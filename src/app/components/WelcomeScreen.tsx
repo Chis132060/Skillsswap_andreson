@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router';
-import { GraduationCap } from 'lucide-react';
+
 
 export default function WelcomeScreen() {
   const navigate = useNavigate();
@@ -7,9 +7,7 @@ export default function WelcomeScreen() {
   return (
     <div className="h-screen bg-white flex flex-col px-6 py-8">
       <div className="flex-1 flex flex-col items-center justify-center">
-        <div className="w-24 h-24 rounded-full bg-[#0B1F3A] flex items-center justify-center mb-6">
-          <GraduationCap className="w-12 h-12 text-[#D4AF37]" />
-        </div>
+        <img src="/logo.png" alt="SkillSwap Logo" className="w-40 h-40 object-contain mb-8 drop-shadow-lg" />
 
         <h1 className="text-[#0B1F3A] text-2xl font-bold mb-2">Welcome to</h1>
         <h2 className="text-[#0B1F3A] text-3xl font-bold mb-6">SkillSwap Campus</h2>

@@ -11,9 +11,7 @@ export default function EarningsDashboard() {
     { id: 3, student: 'Sarah Cruz', subject: 'Data Structures', amount: 350, date: 'Apr 18, 2026' },
     { id: 4, student: 'Mike Torres', subject: 'React Tutorial', amount: 525, date: 'Apr 15, 2026' }
   ];
-
-  const totalEarnings = 2450;
-
+  const totalEarnings = 1925;
   return (
     <div className="min-h-screen bg-gray-50 pb-20">
       <div className="bg-white px-6 py-4 sticky top-0 z-10 border-b border-gray-200">

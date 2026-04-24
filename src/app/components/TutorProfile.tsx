@@ -80,7 +80,7 @@ export default function TutorProfile() {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-gray-600 text-sm">Hourly Rate</p>
-              <p className="text-[#0B1F3A] text-2xl font-bold">₱350</p>
+              <p className="text-[#0B1F3A] text-2xl font-bold">50</p>
             </div>
             <div className="text-right text-sm text-gray-600">
               <p>per hour</p>

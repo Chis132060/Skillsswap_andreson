@@ -10,12 +10,12 @@ export default function BrowseSkills() {
   const tabs = ['Academic', 'Tech', 'Creative', 'Language'];
 
   const tutors = [
-    { id: 1, name: 'Kyle M.', skill: 'Python Programming', rating: 4.9, reviews: 128, price: 350, image: '👨‍💻' },
-    { id: 2, name: 'Sarah L.', skill: 'Calculus & Statistics', rating: 5.0, reviews: 95, price: 400, image: '👩‍🏫' },
-    { id: 3, name: 'Maria C.', skill: 'Web Development', rating: 4.8, reviews: 82, price: 380, image: '👩‍💻' },
-    { id: 4, name: 'Alex R.', skill: 'UI/UX Design', rating: 4.8, reviews: 67, price: 450, image: '👨‍🎨' },
-    { id: 5, name: 'John D.', skill: 'Video Editing', rating: 4.7, reviews: 54, price: 320, image: '🎬' },
-    { id: 6, name: 'Emma W.', skill: 'English Speaking', rating: 4.9, reviews: 103, price: 300, image: '👩‍🏫' }
+    { id: 1, name: 'Kyle M.', skill: 'Python Programming', rating: 4.9, reviews: 128, price: 50, image: '👨‍💻' },
+    { id: 2, name: 'Sarah L.', skill: 'Calculus & Statistics', rating: 5.0, reviews: 95, price: 50, image: '👩‍🏫' },
+    { id: 3, name: 'Maria C.', skill: 'Web Development', rating: 4.8, reviews: 82, price: 50, image: '👩‍💻' },
+    { id: 4, name: 'Alex R.', skill: 'UI/UX Design', rating: 4.8, reviews: 67, price: 50, image: '👨‍🎨' },
+    { id: 5, name: 'John D.', skill: 'Video Editing', rating: 4.7, reviews: 54, price: 50, image: '🎬' },
+    { id: 6, name: 'Emma W.', skill: 'English Speaking', rating: 4.9, reviews: 103, price: 50, image: '👩‍🏫' }
   ];
 
   return (

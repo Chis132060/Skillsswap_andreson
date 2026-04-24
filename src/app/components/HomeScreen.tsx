@@ -13,9 +13,9 @@ export default function HomeScreen() {
   ];
 
   const tutors = [
-    { id: 1, name: 'Kyle M.', skill: 'Python Programming', rating: 4.9, reviews: 128, price: 350, image: '👨‍💻' },
-    { id: 2, name: 'Sarah L.', skill: 'Calculus & Statistics', rating: 5.0, reviews: 95, price: 400, image: '👩‍🏫' },
-    { id: 3, name: 'Alex R.', skill: 'UI/UX Design', rating: 4.8, reviews: 67, price: 450, image: '👨‍🎨' }
+    { id: 1, name: 'Kyle M.', skill: 'Python Programming', rating: 4.9, reviews: 128, price: 50, image: '👨‍💻' },
+    { id: 2, name: 'Sarah L.', skill: 'Calculus & Statistics', rating: 5.0, reviews: 95, price: 50, image: '👩‍🏫' },
+    { id: 3, name: 'Alex R.', skill: 'UI/UX Design', rating: 4.8, reviews: 67, price: 50, image: '👨‍🎨' }
   ];
 
   return (
