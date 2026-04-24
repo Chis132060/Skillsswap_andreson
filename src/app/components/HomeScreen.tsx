@@ -24,7 +24,7 @@ export default function HomeScreen() {
         <div className="flex justify-between items-center mb-6">
           <div>
             <p className="text-gray-300 text-sm">Good morning</p>
-            <h1 className="text-white text-2xl font-bold">Hello, Juan! 👋</h1>
+            <h1 className="text-white text-2xl font-bold">Hello, Andreson! 👋</h1>
           </div>
           <button className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center">
             <Bell className="w-5 h-5 text-white" />

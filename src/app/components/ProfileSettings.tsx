@@ -21,8 +21,8 @@ export default function ProfileSettings() {
 
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2">
           <div className="relative">
-            <div className="w-28 h-28 bg-gray-200 rounded-full border-4 border-white flex items-center justify-center text-4xl">
-              👤
+            <div className="w-28 h-28 bg-gray-200 rounded-full border-4 border-white overflow-hidden">
+              <img src="/andreson.jpg" alt="Andreson Cuenca" className="w-full h-full object-cover" />
             </div>
             <button className="absolute bottom-1 right-1 w-9 h-9 bg-[#D4AF37] rounded-full flex items-center justify-center">
               <Camera className="w-4 h-4 text-white" />
@@ -33,9 +33,9 @@ export default function ProfileSettings() {
 
       <div className="px-6 pt-20 pb-6">
         <div className="text-center mb-8">
-          <h2 className="text-[#0B1F3A] text-xl font-bold mb-1">Juan Dela Cruz</h2>
-          <p className="text-gray-600 text-sm mb-2">University of the Philippines</p>
-          <p className="text-gray-500 text-sm">BS Computer Science</p>
+          <h2 className="text-[#0B1F3A] text-xl font-bold mb-1">Andreson Cuenca</h2>
+          <p className="text-gray-600 text-sm mb-2">Harvard University</p>
+          <p className="text-gray-500 text-sm">BS Business Administration</p>
         </div>
 
         <div className="grid grid-cols-2 gap-3 mb-8">
