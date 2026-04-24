@@ -114,7 +114,7 @@ export default function BookSession() {
         <div className="bg-[#D4AF37]/10 rounded-xl p-4 mb-24">
           <div className="flex justify-between mb-2">
             <span className="text-gray-600">Hourly Rate</span>
-            <span className="text-[#0B1F3A] font-medium">₱350</span>
+            <span className="text-[#0B1F3A] font-medium">₱50</span>
           </div>
           <div className="flex justify-between mb-3">
             <span className="text-gray-600">Duration</span>
@@ -122,7 +122,7 @@ export default function BookSession() {
           </div>
           <div className="border-t border-gray-300 pt-3 flex justify-between">
             <span className="text-[#0B1F3A] font-bold">Total</span>
-            <span className="text-[#0B1F3A] text-xl font-bold">₱{350 * duration}</span>
+            <span className="text-[#0B1F3A] text-xl font-bold">₱{50 * duration}</span>
           </div>
         </div>
 

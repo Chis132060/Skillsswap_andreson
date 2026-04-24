@@ -6,12 +6,12 @@ export default function ProfileSettings() {
   const navigate = useNavigate();
 
   const menuItems = [
-    { icon: User, label: 'Edit Profile', action: () => {} },
-    { icon: Star, label: 'My Skills', action: () => {} },
+    { icon: User, label: 'Edit Profile', action: () => { } },
+    { icon: Star, label: 'My Skills', action: () => { } },
     { icon: Calendar, label: 'Booking History', action: () => navigate('/bookings') },
-    { icon: CreditCard, label: 'Payment Methods', action: () => {} },
-    { icon: Bell, label: 'Notifications', action: () => {} },
-    { icon: HelpCircle, label: 'Help & Support', action: () => {} }
+    { icon: CreditCard, label: 'Payment Methods', action: () => { } },
+    { icon: Bell, label: 'Notifications', action: () => { } },
+    { icon: HelpCircle, label: 'Help & Support', action: () => { } }
   ];
 
   return (

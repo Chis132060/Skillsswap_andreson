@@ -88,7 +88,7 @@ export default function PaymentScreen() {
         <div className="bg-[#D4AF37]/10 rounded-xl p-4 mb-24">
           <div className="flex justify-between mb-2">
             <span className="text-gray-600">Subtotal</span>
-            <span className="text-[#0B1F3A] font-medium">₱350.00</span>
+            <span className="text-[#0B1F3A] font-medium">50.00</span>
           </div>
           <div className="flex justify-between mb-2">
             <span className="text-gray-600">Service Fee</span>
