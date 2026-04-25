@@ -17,6 +17,8 @@ import WithdrawEarnings from './components/WithdrawEarnings';
 import ProfileSettings from './components/ProfileSettings';
 import ChatScreen from './components/ChatScreen';
 import BookingsScreen from './components/BookingsScreen';
+import ProposeSwap from './components/ProposeSwap';
+import SuccessScreen from './components/SuccessScreen';
 
 export default function App() {
   const [showSplash, setShowSplash] = useState(true);
@@ -46,6 +48,8 @@ export default function App() {
           <Route path="/profile" element={<ProfileSettings />} />
           <Route path="/chat" element={<ChatScreen />} />
           <Route path="/bookings" element={<BookingsScreen />} />
+          <Route path="/propose-swap/:id" element={<ProposeSwap />} />
+          <Route path="/success" element={<SuccessScreen />} />
         </Routes>
       </div>
     </BrowserRouter>

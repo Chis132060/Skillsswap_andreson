@@ -47,11 +47,10 @@ export default function BrowseSkills() {
             <button
               key={tab}
               onClick={() => setSelectedTab(tab)}
-              className={`px-4 py-2 rounded-full whitespace-nowrap transition-colors ${
-                selectedTab === tab
-                  ? 'bg-[#0B1F3A] text-white'
-                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-              }`}
+              className={`px-4 py-2 rounded-full whitespace-nowrap transition-colors ${selectedTab === tab
+                ? 'bg-[#0B1F3A] text-white'
+                : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                }`}
             >
               {tab}
             </button>

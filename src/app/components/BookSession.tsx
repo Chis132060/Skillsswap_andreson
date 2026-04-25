@@ -7,6 +7,8 @@ export default function BookSession() {
   const [selectedDate, setSelectedDate] = useState<number | null>(null);
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
   const [duration, setDuration] = useState<number>(1);
+  const [paymentMethod, setPaymentMethod] = useState<'flat_fee' | 'swap'>('flat_fee');
+  const [offerMessage, setOfferMessage] = useState('');
 
   const dates = [
     { day: 'Mon', date: 24 },
@@ -19,7 +21,11 @@ export default function BookSession() {
   const timeSlots = ['9:00 AM', '10:00 AM', '1:00 PM', '2:00 PM', '3:00 PM', '4:00 PM'];
 
   const handleConfirm = () => {
-    navigate('/payment');
+    if (paymentMethod === 'swap') {
+      navigate('/propose-swap/kyle-m');
+    } else {
+      navigate('/payment');
+    }
   };
 
   return (
@@ -111,18 +117,64 @@ export default function BookSession() {
           </div>
         </div>
 
-        <div className="bg-[#D4AF37]/10 rounded-xl p-4 mb-24">
-          <div className="flex justify-between mb-2">
-            <span className="text-gray-600">Hourly Rate</span>
-            <span className="text-[#0B1F3A] font-medium">₱50</span>
-          </div>
-          <div className="flex justify-between mb-3">
-            <span className="text-gray-600">Duration</span>
-            <span className="text-[#0B1F3A] font-medium">{duration} hour{duration > 1 ? 's' : ''}</span>
-          </div>
-          <div className="border-t border-gray-300 pt-3 flex justify-between">
-            <span className="text-[#0B1F3A] font-bold">Total</span>
-            <span className="text-[#0B1F3A] text-xl font-bold">₱{50 * duration}</span>
+        <div className="mb-6 pb-24">
+          <h3 className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-3">Payment Method</h3>
+          <div className="space-y-3">
+            <div
+              onClick={() => setPaymentMethod('flat_fee')}
+              className={`p-4 rounded-[12px] border-2 cursor-pointer transition-colors ${
+                paymentMethod === 'flat_fee'
+                  ? 'border-[#1A2B4C] bg-gray-50'
+                  : 'border-gray-200 bg-white hover:border-gray-300'
+              }`}
+            >
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
+                    paymentMethod === 'flat_fee' ? 'border-[#1A2B4C]' : 'border-gray-300'
+                  }`}>
+                    {paymentMethod === 'flat_fee' && <div className="w-2.5 h-2.5 rounded-full bg-[#1A2B4C]" />}
+                  </div>
+                  <span className="font-semibold text-[#1A2B4C]">Pay Flat Fee</span>
+                </div>
+                <span className="font-bold text-[#1A2B4C]">₱{50 * duration}</span>
+              </div>
+            </div>
+
+            <div
+              onClick={() => setPaymentMethod('swap')}
+              className={`p-4 rounded-[12px] border-2 cursor-pointer transition-colors ${
+                paymentMethod === 'swap'
+                  ? 'border-[#1A2B4C] bg-gray-50'
+                  : 'border-gray-200 bg-white hover:border-gray-300'
+              }`}
+            >
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
+                    paymentMethod === 'swap' ? 'border-[#1A2B4C]' : 'border-gray-300'
+                  }`}>
+                    {paymentMethod === 'swap' && <div className="w-2.5 h-2.5 rounded-full bg-[#1A2B4C]" />}
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="font-semibold text-[#1A2B4C]">Request Skill Swap</span>
+                    <span className="text-lg">🤝</span>
+                  </div>
+                </div>
+              </div>
+              {paymentMethod === 'swap' && (
+                <div className="mt-4 pt-4 border-t border-gray-200">
+                  <label className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2 block">Offer Message (Optional)</label>
+                  <textarea
+                    value={offerMessage}
+                    onChange={(e) => setOfferMessage(e.target.value)}
+                    placeholder="Briefly describe what you'd like to swap..."
+                    className="w-full bg-white border border-gray-200 rounded-[8px] p-3 text-sm text-[#1A2B4C] placeholder-gray-400 focus:outline-none focus:border-[#1A2B4C]"
+                    rows={2}
+                  />
+                </div>
+              )}
+            </div>
           </div>
         </div>
 
@@ -130,9 +182,9 @@ export default function BookSession() {
           <button
             onClick={handleConfirm}
             disabled={!selectedDate || !selectedTime}
-            className={`w-full py-4 rounded-xl transition-colors ${
+            className={`w-full py-4 rounded-xl transition-colors font-medium ${
               selectedDate && selectedTime
-                ? 'bg-[#0B1F3A] text-white hover:bg-[#0B1F3A]/90'
+                ? 'bg-[#1A2B4C] text-white hover:bg-[#1A2B4C]/90'
                 : 'bg-gray-300 text-gray-500 cursor-not-allowed'
             }`}
           >

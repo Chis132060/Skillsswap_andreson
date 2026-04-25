@@ -1,0 +1,440 @@
+Technical Prompt for Skill Swap Feature (Next.js)
+
+Overview
+
+Develop a "Skill Swap" feature for the "SkillSwap Campus" application using Next.js, Tailwind CSS, and a preferred backend/database (e.g., Supabase or Firebase). The system allows students to either pay a flat fee of ₱50 or propose a skill-for-skill exchange.
+
+Core Screens & Components
+
+Based on the existing UI designs ({{DATA:SCREEN:SCREEN_7}}, {{DATA:SCREEN:SCREEN_9}}, {{DATA:SCREEN:SCREEN_5}}):
+
+1. Booking Selection (Page: /book/[tutorId])
+
+
+
+
+
+Header: Sticky TopAppBar with back navigation.
+
+
+
+Tutor Summary: Card showing tutor name, rating, and expertise.
+
+
+
+Schedule Selector: Horizontal scrolling date picker and time slot grid.
+
+
+
+Payment Method Toggle: A radio group or card selection for:
+
+
+
+
+
+Pay Flat Fee: Shows a fixed price of ₱50.
+
+
+
+Request Skill Swap: Displays a "Swap" icon and an "Offer" input area.
+
+
+
+CTA: "Confirm Booking" button that routes based on the selection.
+
+2. Swap Proposal (Page: /propose-swap/[tutorId])
+
+
+
+
+
+Request Details: Summary of the session being requested (time, date, tutor).
+
+
+
+Offer Selection: A list of the user's available skills with radio selection buttons.
+
+
+
+"Add New Skill" Action: Triggers a modal or inline input for new skills.
+
+
+
+Pitch Message: A textarea for a "Pitch Your Swap" message.
+
+
+
+Legal/Info Banner: Explains how the tutor review process works.
+
+
+
+CTA: "Send Proposal" button.
+
+3. Confirmation (Page: /success)
+
+
+
+
+
+Success State: Centered icon and "Proposal Sent!" headline.
+
+
+
+Recap Card: Shows the offered skill vs. the requested skill.
+
+
+
+Navigation: Primary "Back to Home" and secondary "View My Bookings" buttons.
+
+Technical Requirements
+
+
+
+
+
+Framework: Next.js (App Router preferred).
+
+
+
+Styling: Tailwind CSS for a clean, "Academic Prestige" look (#1A2B4C primary).
+
+
+
+Icons: Material Symbols or Lucide-react.
+
+
+
+State Management: Use useState for local form data or a global store if the flow is split across many pages.
+
+
+
+API Routes: 
+
+
+
+
+
+POST /api/bookings: To handle flat fee transactions.
+
+
+
+POST /api/proposals: To save swap requests to the database and trigger notifications.
+
+User Flow
+
+
+
+
+
+User clicks "Book a Session" from a Tutor Profile.
+
+
+
+User selects a time slot and chooses "Request Skill Swap".
+
+
+
+User is directed to the Proposal page to pick their skill and write a pitch.
+
+
+
+On submission, the app saves the proposal with a pending status.
+
+
+
+User arrives at the Confirmation screen
+
+
+
+
+
+anothere prompot related is this Technical Prompt for Skill Swap Feature (Next.js)
+
+Overview
+
+Develop a "Skill Swap" feature for the "SkillSwap Campus" application using Next.js, Tailwind CSS, and a preferred backend/database (e.g., Supabase or Firebase). The system allows students to either pay a flat fee of ₱50 or propose a skill-for-skill exchange.
+
+Core Screens & Components
+
+Based on the existing UI designs ({{DATA:SCREEN:SCREEN_7}}, {{DATA:SCREEN:SCREEN_9}}, {{DATA:SCREEN:SCREEN_5}}):
+
+1. Booking Selection (Page: /book/[tutorId])
+
+
+
+
+
+Header: Sticky TopAppBar with back navigation.
+
+
+
+Tutor Summary: Card showing tutor name, rating, and expertise.
+
+
+
+Schedule Selector: Horizontal scrolling date picker and time slot grid.
+
+
+
+Payment Method Toggle: A radio group or card selection for:
+
+
+
+
+
+Pay Flat Fee: Shows a fixed price of ₱50.
+
+
+
+Request Skill Swap: Displays a "Swap" icon and an "Offer" input area.
+
+
+
+CTA: "Confirm Booking" button that routes based on the selection.
+
+2. Swap Proposal (Page: /propose-swap/[tutorId])
+
+
+
+
+
+Request Details: Summary of the session being requested (time, date, tutor).
+
+
+
+Offer Selection: A list of the user's available skills with radio selection buttons.
+
+
+
+"Add New Skill" Action: Triggers a modal or inline input for new skills.
+
+
+
+Pitch Message: A textarea for a "Pitch Your Swap" message.
+
+
+
+Legal/Info Banner: Explains how the tutor review process works.
+
+
+
+CTA: "Send Proposal" button.
+
+3. Confirmation (Page: /success)
+
+
+
+
+
+Success State: Centered icon and "Proposal Sent!" headline.
+
+
+
+Recap Card: Shows the offered skill vs. the requested skill.
+
+
+
+Navigation: Primary "Back to Home" and secondary "View My Bookings" buttons.
+
+Technical Requirements
+
+
+
+
+
+Framework: Next.js (App Router preferred).
+
+
+
+Styling: Tailwind CSS for a clean, "Academic Prestige" look (#1A2B4C primary).
+
+
+
+Icons: Material Symbols or Lucide-react.
+
+
+
+State Management: Use useState for local form data or a global store if the flow is split across many pages.
+
+
+
+API Routes: 
+
+
+
+
+
+POST /api/bookings: To handle flat fee transactions.
+
+
+
+POST /api/proposals: To save swap requests to the database and trigger notifications.
+
+User Flow
+
+
+
+
+
+User clicks "Book a Session" from a Tutor Profile.
+
+
+
+User selects a time slot and chooses "Request Skill Swap".
+
+
+
+User is directed to the Proposal page to pick their skill and write a pitch.
+
+
+
+On submission, the app saves the proposal with a pending status.
+
+
+
+User arrives at the Confirmation screen
+Technical Prompt for Skill Swap Feature (Next.js)
+
+Overview
+
+Develop a "Skill Swap" feature for the "SkillSwap Campus" application using Next.js, Tailwind CSS, and a preferred backend/database (e.g., Supabase or Firebase). The system allows students to either pay a flat fee of ₱50 or propose a skill-for-skill exchange.
+
+Core Screens & Components
+
+Based on the existing UI designs ({{DATA:SCREEN:SCREEN_7}}, {{DATA:SCREEN:SCREEN_9}}, {{DATA:SCREEN:SCREEN_5}}):
+
+1. Booking Selection (Page: /book/[tutorId])
+
+
+
+
+
+Header: Sticky TopAppBar with back navigation.
+
+
+
+Tutor Summary: Card showing tutor name, rating, and expertise.
+
+
+
+Schedule Selector: Horizontal scrolling date picker and time slot grid.
+
+
+
+Payment Method Toggle: A radio group or card selection for:
+
+
+
+
+
+Pay Flat Fee: Shows a fixed price of ₱50.
+
+
+
+Request Skill Swap: Displays a "Swap" icon and an "Offer" input area.
+
+
+
+CTA: "Confirm Booking" button that routes based on the selection.
+
+2. Swap Proposal (Page: /propose-swap/[tutorId])
+
+
+
+
+
+Request Details: Summary of the session being requested (time, date, tutor).
+
+
+
+Offer Selection: A list of the user's available skills with radio selection buttons.
+
+
+
+"Add New Skill" Action: Triggers a modal or inline input for new skills.
+
+
+
+Pitch Message: A textarea for a "Pitch Your Swap" message.
+
+
+
+Legal/Info Banner: Explains how the tutor review process works.
+
+
+
+CTA: "Send Proposal" button.
+
+3. Confirmation (Page: /success)
+
+
+
+
+
+Success State: Centered icon and "Proposal Sent!" headline.
+
+
+
+Recap Card: Shows the offered skill vs. the requested skill.
+
+
+
+Navigation: Primary "Back to Home" and secondary "View My Bookings" buttons.
+
+Technical Requirements
+
+
+
+
+
+Framework: Next.js (App Router preferred).
+
+
+
+Styling: Tailwind CSS for a clean, "Academic Prestige" look (#1A2B4C primary).
+
+
+
+Icons: Material Symbols or Lucide-react.
+
+
+
+State Management: Use useState for local form data or a global store if the flow is split across many pages.
+
+
+
+API Routes: 
+
+
+
+
+
+POST /api/bookings: To handle flat fee transactions.
+
+
+
+POST /api/proposals: To save swap requests to the database and trigger notifications.
+
+User Flow
+
+
+
+
+
+User clicks "Book a Session" from a Tutor Profile.
+
+
+
+User selects a time slot and chooses "Request Skill Swap".
+
+
+
+User is directed to the Proposal page to pick their skill and write a pitch.
+
+
+
+On submission, the app saves the proposal with a pending status.
+
+
+
+User arrives at the Confirmation screen
