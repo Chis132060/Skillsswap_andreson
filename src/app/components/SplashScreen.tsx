@@ -9,8 +9,8 @@ export default function SplashScreen({ onComplete }: { onComplete: () => void })
 
   return (
     <div 
-      className="h-screen flex flex-col items-center justify-center px-6 bg-cover bg-center"
-      style={{ backgroundImage: 'url(/leader.png)' }}
+      className="h-screen flex flex-col items-center justify-center px-6 bg-center bg-no-repeat"
+      style={{ backgroundImage: 'url(/leader.png)', backgroundSize: '115% 115%' }}
     >
       <img 
         src="/logo.png" 

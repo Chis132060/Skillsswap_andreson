@@ -34,7 +34,7 @@ export default function ProfileSettings() {
       <div className="px-6 pt-20 pb-6">
         <div className="text-center mb-8">
           <h2 className="text-[#0B1F3A] text-xl font-bold mb-1">Andreson Cuenca</h2>
-          <p className="text-gray-600 text-sm mb-2">Harvard University</p>
+          <p className="text-gray-600 text-sm mb-2">Father Saturnino Urios University</p>
           <p className="text-gray-500 text-sm">BS Business Administration</p>
         </div>
 
