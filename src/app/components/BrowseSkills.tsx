@@ -8,10 +8,14 @@ export default function BrowseSkills() {
   const location = useLocation();
   const [selectedTab, setSelectedTab] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
+  const [sortOrder, setSortOrder] = useState<'none' | 'rating-desc'>('none');
 
   useEffect(() => {
     if (location.state?.category) {
       setSelectedTab(location.state.category);
+    }
+    if (location.state?.search) {
+      setSearchQuery(location.state.search);
     }
   }, [location.state]);
 
@@ -26,12 +30,16 @@ export default function BrowseSkills() {
     { id: 6, name: 'Emma W.', skill: 'English Speaking', category: 'Language', rating: 4.9, reviews: 103, price: 50, image: '👩‍🏫' }
   ];
 
-  const filteredTutors = tutors.filter(tutor => {
+  let filteredTutors = tutors.filter(tutor => {
     const matchesCategory = selectedTab === 'All' || tutor.category === selectedTab;
-    const matchesSearch = tutor.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                         tutor.skill.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesSearch = tutor.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      tutor.skill.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesCategory && matchesSearch;
   });
+
+  if (sortOrder === 'rating-desc') {
+    filteredTutors = [...filteredTutors].sort((a, b) => b.rating - a.rating);
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 pb-20">
@@ -41,8 +49,15 @@ export default function BrowseSkills() {
             <ArrowLeft className="w-6 h-6 text-[#0B1F3A]" />
           </button>
           <h1 className="text-[#0B1F3A] text-xl font-bold flex-1">Browse Skills</h1>
-          <button className="p-2">
-            <SlidersHorizontal className="w-6 h-6 text-[#0B1F3A]" />
+          <button
+            onClick={() => setSortOrder(prev => prev === 'none' ? 'rating-desc' : 'none')}
+            className={`p-2 rounded-lg transition-colors ${sortOrder !== 'none' ? 'bg-[#D4AF37]/10 text-[#D4AF37]' : 'text-[#0B1F3A]'}`}
+            title="Sort by Rating"
+          >
+            <div className="flex items-center gap-1">
+              <SlidersHorizontal className="w-6 h-6" />
+              {sortOrder !== 'none' && <span className="text-xs font-bold">Rating</span>}
+            </div>
           </button>
         </div>
 
@@ -51,6 +66,8 @@ export default function BrowseSkills() {
           <input
             type="text"
             placeholder="Search skills..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full pl-12 pr-4 py-3 bg-gray-50 rounded-xl border border-gray-200 focus:border-[#D4AF37] focus:outline-none focus:ring-2 focus:ring-[#D4AF37]/20"
           />
         </div>
