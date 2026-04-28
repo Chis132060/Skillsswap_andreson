@@ -20,8 +20,99 @@ const tutors = [
   { id: 3, name: 'Alex R.', skill: 'UI/UX Design', avatar: '👨‍🎨' },
   { id: 4, name: 'Maria C.', skill: 'Web Development', avatar: '👩‍💻' },
   { id: 5, name: 'John D.', skill: 'Video Editing', avatar: '🎬' },
-  { id: 6, name: 'Emma W.', skill: 'English Speaking', avatar: '👩‍🏫' }
+  { id: 6, name: 'Emma W.', skill: 'English Speaking', avatar: '👩‍🏫' },
+  { id: 7, name: 'Carlos T.', skill: 'Python Programming', avatar: '👨‍🔬' },
+  { id: 8, name: 'Rina P.', skill: 'Calculus & Statistics', avatar: '👩‍🔬' },
+  { id: 9, name: 'Jake F.', skill: 'Web Development', avatar: '🧑‍💻' },
+  { id: 10, name: 'Mei A.', skill: 'UI/UX Design', avatar: '🎨' }
 ];
+
+// Pre-populated mock conversations for prototyping
+const mockConversations: ChatSession = {
+  // Chat 1: Booking a Session (Kyle M. — Python Programming)
+  1: [
+    { id: 'mock-1-1', text: 'Hey Kyle! I saw your profile — are you available for a Python session this week?', sender: 'me', time: '9:15 AM' },
+    { id: 'mock-1-2', text: 'Hey! Yeah I\'m free Thursday and Friday afternoon 😊 What topic do you need help with?', sender: 'tutor', time: '9:17 AM' },
+    { id: 'mock-1-3', text: 'I need help with loops and functions. Is it ₱50/hour?', sender: 'me', time: '9:18 AM' },
+    { id: 'mock-1-4', text: 'Yep, ₱50/hour! Let\'s do Thursday 3pm? I\'ll prepare some exercises for you 👍', sender: 'tutor', time: '9:20 AM' },
+    { id: 'mock-1-5', text: 'Perfect, Thursday 3pm works! See you then 🙌', sender: 'me', time: '9:21 AM' },
+  ],
+  // Chat 2: Beginner Asking Questions (Sarah L. — Calculus & Statistics)
+  2: [
+    { id: 'mock-2-1', text: 'Hi Sarah, I\'m really struggling with derivatives 😅 Is it okay if I ask some basic questions?', sender: 'me', time: '10:30 AM' },
+    { id: 'mock-2-2', text: 'Of course! No question is too basic. What\'s confusing you?', sender: 'tutor', time: '10:32 AM' },
+    { id: 'mock-2-3', text: 'Like... what even IS a derivative? My prof explains it so fast', sender: 'me', time: '10:33 AM' },
+    { id: 'mock-2-4', text: 'Think of it as the rate of change — like how fast something is moving at one exact moment. Want me to walk you through it with a simple example?', sender: 'tutor', time: '10:35 AM' },
+    { id: 'mock-2-5', text: 'Yes please!! That already makes more sense than my lecture 😂', sender: 'me', time: '10:36 AM' },
+    { id: 'mock-2-6', text: 'Haha glad to help! Let\'s book a session and I\'ll make it click for you 💡', sender: 'tutor', time: '10:37 AM' },
+  ],
+  // Chat 3: Skill Swapping Negotiation (Alex R. — UI/UX Design)
+  3: [
+    { id: 'mock-3-1', text: 'Hey Alex! I noticed you teach UI/UX. Would you be open to a skill swap instead of paid sessions?', sender: 'me', time: '2:00 PM' },
+    { id: 'mock-3-2', text: 'Depends! What skill are you offering? 🤔', sender: 'tutor', time: '2:03 PM' },
+    { id: 'mock-3-3', text: 'I can teach you video editing — I\'m pretty good with Premiere Pro and After Effects', sender: 'me', time: '2:04 PM' },
+    { id: 'mock-3-4', text: 'Oh nice, I\'ve actually been wanting to learn motion graphics! Deal — 1 hour of UI/UX for 1 hour of video editing? 🤝', sender: 'tutor', time: '2:06 PM' },
+    { id: 'mock-3-5', text: 'Sounds fair! When do we start? 😊', sender: 'me', time: '2:07 PM' },
+  ],
+  // Chat 4: Rush Request (Maria C. — Web Development)
+  4: [
+    { id: 'mock-4-1', text: 'Maria!! SOS 😭 I have a web dev project due tomorrow and my CSS layout is completely broken', sender: 'me', time: '8:45 PM' },
+    { id: 'mock-4-2', text: 'Oh no 😅 What framework are you using? Send me a screenshot', sender: 'tutor', time: '8:47 PM' },
+    { id: 'mock-4-3', text: 'Just plain HTML/CSS. The flexbox isn\'t centering anything and my grid is overlapping', sender: 'me', time: '8:48 PM' },
+    { id: 'mock-4-4', text: 'Classic flexbox issues haha. I can hop on a call right now if you want? We can fix it together — shouldn\'t take long', sender: 'tutor', time: '8:50 PM' },
+    { id: 'mock-4-5', text: 'You\'re a lifesaver!! Yes please, I\'ll send you the code 🙏', sender: 'me', time: '8:51 PM' },
+    { id: 'mock-4-6', text: 'No worries, we got this 💪 Send it over!', sender: 'tutor', time: '8:52 PM' },
+  ],
+  // Chat 5: Price Negotiation (John D. — Video Editing)
+  5: [
+    { id: 'mock-5-1', text: 'Hi John! How much for video editing sessions? I need to learn the basics for a school project', sender: 'me', time: '11:00 AM' },
+    { id: 'mock-5-2', text: 'Hey! It\'s ₱50/hour. What software do you want to learn?', sender: 'tutor', time: '11:05 AM' },
+    { id: 'mock-5-3', text: 'CapCut or Premiere. Tbh ₱50 is a bit tight for me rn 😅 Any chance for a discount if I book 3 sessions?', sender: 'me', time: '11:07 AM' },
+    { id: 'mock-5-4', text: 'Hmm, how about ₱120 for 3 hours? That\'s like ₱40/hour 👀 since you\'re booking bulk', sender: 'tutor', time: '11:10 AM' },
+    { id: 'mock-5-5', text: 'Deal!! You\'re the best 🔥 Let\'s start with CapCut this weekend?', sender: 'me', time: '11:11 AM' },
+  ],
+  // Chat 6: Feedback After Session (Emma W. — English Speaking)
+  6: [
+    { id: 'mock-6-1', text: 'Hey Emma! Just wanted to say thanks for the session earlier. My pronunciation really improved! 😊', sender: 'me', time: '5:30 PM' },
+    { id: 'mock-6-2', text: 'Aww thank you!! You did amazing honestly. Your intonation is getting so much better 🎉', sender: 'tutor', time: '5:33 PM' },
+    { id: 'mock-6-3', text: 'Haha I was so nervous at first but you made it comfortable. Definitely booking again next week!', sender: 'me', time: '5:35 PM' },
+    { id: 'mock-6-4', text: 'I\'d love that! We can work on conversational phrases next time. Keep practicing in front of the mirror! 💪😄', sender: 'tutor', time: '5:37 PM' },
+  ],
+  // Chat 7: Casual Learning Conversation (Carlos T. — Python Programming)
+  7: [
+    { id: 'mock-7-1', text: 'Carlos, random question — is Python actually useful outside of school?', sender: 'me', time: '3:00 PM' },
+    { id: 'mock-7-2', text: 'Bro, YES. I use it for automating stuff, data analysis, even making bots 😂', sender: 'tutor', time: '3:02 PM' },
+    { id: 'mock-7-3', text: 'Wait you made a bot?? That\'s sick. Can you teach me how?', sender: 'me', time: '3:03 PM' },
+    { id: 'mock-7-4', text: 'For sure! It\'s actually not that hard. We can start with a simple Discord bot — just need like 2 sessions', sender: 'tutor', time: '3:05 PM' },
+    { id: 'mock-7-5', text: 'Let\'s gooo 🔥 When are you free?', sender: 'me', time: '3:06 PM' },
+    { id: 'mock-7-6', text: 'Tomorrow after lunch? I\'ll set up the project for us 👍', sender: 'tutor', time: '3:07 PM' },
+  ],
+  // Chat 8: Scheduling (Rina P. — Calculus & Statistics)
+  8: [
+    { id: 'mock-8-1', text: 'Hi Rina! Can we reschedule our stats session? Something came up on Wednesday 😅', sender: 'me', time: '7:00 PM' },
+    { id: 'mock-8-2', text: 'No prob! How about Saturday morning instead? Like 10am?', sender: 'tutor', time: '7:05 PM' },
+    { id: 'mock-8-3', text: 'Saturday works but can we do 11am? I\'m not a morning person haha', sender: 'me', time: '7:06 PM' },
+    { id: 'mock-8-4', text: 'Haha same honestly 😂 11am it is! We\'ll cover probability distributions', sender: 'tutor', time: '7:08 PM' },
+    { id: 'mock-8-5', text: 'Awesome, thanks for being flexible! See you Sat 🙏', sender: 'me', time: '7:09 PM' },
+  ],
+  // Chat 9: Asking for Help (Jake F. — Web Development)
+  9: [
+    { id: 'mock-9-1', text: 'Jake, quick question — do you know how to connect a React frontend to a database?', sender: 'me', time: '1:20 PM' },
+    { id: 'mock-9-2', text: 'Yeah! You\'ll need a backend API in between. Are you using Node or something else?', sender: 'tutor', time: '1:23 PM' },
+    { id: 'mock-9-3', text: 'I don\'t have a backend yet 😅 I thought React can just talk to the database directly?', sender: 'me', time: '1:25 PM' },
+    { id: 'mock-9-4', text: 'Nah that would be a security nightmare haha. I can teach you how to set up a simple Express API — it\'s not that scary I promise 😊', sender: 'tutor', time: '1:28 PM' },
+    { id: 'mock-9-5', text: 'Okay let\'s do it! Book me for a session this week?', sender: 'me', time: '1:29 PM' },
+  ],
+  // Chat 10: Project Request (Mei A. — UI/UX Design)
+  10: [
+    { id: 'mock-10-1', text: 'Hey Mei! I have a class project where I need to design a mobile app mockup. Can you help me?', sender: 'me', time: '4:00 PM' },
+    { id: 'mock-10-2', text: 'Sure! What kind of app is it for? 🤔', sender: 'tutor', time: '4:03 PM' },
+    { id: 'mock-10-3', text: 'It\'s a fitness tracker app. I need wireframes and a high-fidelity prototype in Figma', sender: 'me', time: '4:05 PM' },
+    { id: 'mock-10-4', text: 'Nice! I can teach you how to build it yourself — wireframe first, then components, then prototype. Probably 3 sessions worth', sender: 'tutor', time: '4:08 PM' },
+    { id: 'mock-10-5', text: 'That sounds great! ₱50/hour right? So ₱150 total?', sender: 'me', time: '4:09 PM' },
+    { id: 'mock-10-6', text: 'Yep! Or if you know any coding, we could skill swap too 😉 Up to you!', sender: 'tutor', time: '4:10 PM' },
+  ],
+};
 
 export default function ChatScreen() {
   const navigate = useNavigate();
@@ -34,17 +125,26 @@ export default function ChatScreen() {
 
   // Load from localStorage and handle incoming route state
   useEffect(() => {
+    const MOCK_VERSION = 'v2_mock_conversations';
+    const currentVersion = localStorage.getItem('skillswap_chats_version');
+    
+    // Force reset if mock data version changed
+    if (currentVersion !== MOCK_VERSION) {
+      localStorage.removeItem('skillswap_chats');
+      localStorage.setItem('skillswap_chats_version', MOCK_VERSION);
+    }
+
     const stored = localStorage.getItem('skillswap_chats');
     let initialHistory: ChatSession = stored ? JSON.parse(stored) : {};
 
-    // Initialize missing tutors with a welcome message
+    // Initialize missing tutors with mock conversation data
     let updated = false;
     tutors.forEach(t => {
       if (!initialHistory[t.id]) {
-        initialHistory[t.id] = [{ 
+        initialHistory[t.id] = mockConversations[t.id] || [{ 
           id: `init-${t.id}`, 
           text: `Hi! I'm ${t.name}. Let me know if you want to discuss ${t.skill}!`, 
-          sender: 'tutor', 
+          sender: 'tutor' as const, 
           time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) 
         }];
         updated = true;
@@ -71,47 +171,26 @@ export default function ChatScreen() {
   }, [chatHistory, selectedChat, isTyping]);
 
   const generateTutorResponse = async (tutorName: string, subject: string, history: Message[]) => {
-    const apiKey = import.meta.env.VITE_GEMINI_API_KEY?.trim();
+    // Array of general static responses for prototyping
+    const staticResponses = [
+      `That's a great question about ${subject}!`,
+      "I'd be happy to explain that in more detail.",
+      "Could you give me a specific example of what you're trying to achieve?",
+      "That's definitely a core concept we can cover in our sessions.",
+      "Yes, exactly! You're on the right track.",
+      "Let's schedule a session to dive deeper into this.",
+      "Here is a simple way to think about it: practice makes perfect.",
+      "I have some great resources on that if you're interested.",
+      "That's one of the most common challenges students face."
+    ];
     
-    if (!apiKey) {
-      return "⚠️ **API Key Missing** ⚠️\nTo make this chat dynamic, please get a free Gemini API key and add it to your .env file as VITE_GEMINI_API_KEY.";
-    }
-
-    const systemPrompt = `You are ${tutorName}, a human tutor on SkillSwap teaching ${subject}. You must strictly act as this human tutor. Be extremely concise. Keep your responses to 1-2 short sentences maximum to save tokens. Answer ONLY questions related to your subject. Do not hallucinate external details.`;
+    // Pick a response based on the message history length so it follows a sequence
+    const responseIndex = Math.max(0, history.length - 2) % staticResponses.length;
     
-    // Format history for Gemini
-    const contents = history.slice(-5).map(msg => ({
-      role: msg.sender === 'me' ? 'user' : 'model',
-      parts: [{ text: msg.text }]
-    }));
-
-    try {
-      const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          systemInstruction: {
-            parts: [{ text: systemPrompt }]
-          },
-          contents: contents,
-          generationConfig: {
-            temperature: 0.7,
-            maxOutputTokens: 60,
-          }
-        })
-      });
-      
-      const data = await response.json();
-      
-      if (data.candidates && data.candidates[0].content.parts[0].text) {
-        return data.candidates[0].content.parts[0].text.trim();
-      } else {
-        return "Sorry, I couldn't understand that.";
-      }
-    } catch (error) {
-      console.error(error);
-      return "Sorry, my internet connection is acting up. Let's chat later!";
-    }
+    // Simulate a realistic typing delay (1.5 seconds)
+    await new Promise(resolve => setTimeout(resolve, 1500));
+    
+    return staticResponses[responseIndex];
   };
 
   const handleSendMessage = async () => {
