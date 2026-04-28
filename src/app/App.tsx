@@ -19,6 +19,7 @@ import ChatScreen from './components/ChatScreen';
 import BookingsScreen from './components/BookingsScreen';
 import ProposeSwap from './components/ProposeSwap';
 import SuccessScreen from './components/SuccessScreen';
+import NotificationsScreen from './components/NotificationsScreen';
 
 export default function App() {
   const [showSplash, setShowSplash] = useState(true);
@@ -50,6 +51,7 @@ export default function App() {
           <Route path="/bookings" element={<BookingsScreen />} />
           <Route path="/propose-swap/:id" element={<ProposeSwap />} />
           <Route path="/success" element={<SuccessScreen />} />
+          <Route path="/notifications" element={<NotificationsScreen />} />
         </Routes>
       </div>
     </BrowserRouter>

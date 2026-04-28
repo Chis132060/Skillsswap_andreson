@@ -1,30 +1,94 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import { ArrowLeft, Calendar, Clock } from 'lucide-react';
+
+const allTutors = [
+  { id: 1, name: 'Kyle M.', skill: 'Python Programming', price: 50, image: '👨‍💻' },
+  { id: 2, name: 'Sarah L.', skill: 'Calculus & Statistics', price: 50, image: '👩‍🏫' },
+  { id: 3, name: 'Maria C.', skill: 'Web Development', price: 50, image: '👩‍💻' },
+  { id: 4, name: 'Alex R.', skill: 'UI/UX Design', price: 50, image: '👨‍🎨' },
+  { id: 5, name: 'John D.', skill: 'Video Editing', price: 50, image: '🎬' },
+  { id: 6, name: 'Emma W.', skill: 'English Speaking', price: 50, image: '👩‍🏫' }
+];
+
+function getUpcomingDates(): { day: string; date: number; month: string; year: number; full: string }[] {
+  const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  const result = [];
+  const today = new Date();
+
+  for (let i = 0; i < 5; i++) {
+    const d = new Date(today);
+    d.setDate(today.getDate() + i);
+    result.push({
+      day: days[d.getDay()],
+      date: d.getDate(),
+      month: months[d.getMonth()],
+      year: d.getFullYear(),
+      full: `${months[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`
+    });
+  }
+  return result;
+}
+
+function addHours(timeStr: string, hours: number): string {
+  const match = timeStr.match(/(\d+):(\d+)\s*(AM|PM)/i);
+  if (!match) return timeStr;
+  let h = parseInt(match[1]);
+  const m = match[2];
+  const period = match[3].toUpperCase();
+  if (period === 'PM' && h !== 12) h += 12;
+  if (period === 'AM' && h === 12) h = 0;
+  h += hours;
+  const newPeriod = h >= 12 && h < 24 ? 'PM' : 'AM';
+  const displayH = h % 12 === 0 ? 12 : h % 12;
+  return `${displayH}:${m} ${newPeriod}`;
+}
 
 export default function BookSession() {
   const navigate = useNavigate();
-  const [selectedDate, setSelectedDate] = useState<number | null>(null);
+  const { id } = useParams();
+  const [selectedDateIdx, setSelectedDateIdx] = useState<number | null>(null);
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
   const [duration, setDuration] = useState<number>(1);
   const [paymentMethod, setPaymentMethod] = useState<'flat_fee' | 'swap'>('flat_fee');
   const [offerMessage, setOfferMessage] = useState('');
 
-  const dates = [
-    { day: 'Mon', date: 24 },
-    { day: 'Tue', date: 25 },
-    { day: 'Wed', date: 26 },
-    { day: 'Thu', date: 27 },
-    { day: 'Fri', date: 28 }
-  ];
-
+  const tutor = allTutors.find(t => t.id === Number(id)) || allTutors[0];
+  const dates = getUpcomingDates();
   const timeSlots = ['9:00 AM', '10:00 AM', '1:00 PM', '2:00 PM', '3:00 PM', '4:00 PM'];
 
   const handleConfirm = () => {
+    if (!selectedTime || selectedDateIdx === null) return;
+
+    const selectedDate = dates[selectedDateIdx];
+    const endTime = addHours(selectedTime, duration);
+
+    const booking = {
+      id: Date.now(),
+      tutorId: tutor.id,
+      tutor: tutor.name,
+      avatar: tutor.image,
+      subject: tutor.skill,
+      date: selectedDate.full,
+      time: `${selectedTime} - ${endTime}`,
+      duration,
+      location: 'Online',
+      status: 'confirmed',
+      price: tutor.price * duration,
+      paymentMethod,
+      createdAt: new Date().toISOString()
+    };
+
+    // Save to localStorage
+    const existing = JSON.parse(localStorage.getItem('skillswap_bookings') || '[]');
+    existing.push(booking);
+    localStorage.setItem('skillswap_bookings', JSON.stringify(existing));
+
     if (paymentMethod === 'swap') {
-      navigate('/propose-swap/kyle-m');
+      navigate('/propose-swap/kyle-m', { state: { booking } });
     } else {
-      navigate('/payment');
+      navigate('/payment', { state: { booking } });
     }
   };
 
@@ -42,11 +106,11 @@ export default function BookSession() {
       <div className="px-6 py-6">
         <div className="bg-white rounded-xl p-4 mb-6 shadow-sm flex items-center gap-4">
           <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center text-xl">
-            👨‍💻
+            {tutor.image}
           </div>
           <div>
-            <h3 className="text-[#0B1F3A] font-medium">Kyle M.</h3>
-            <p className="text-gray-600 text-sm">Python Programming</p>
+            <h3 className="text-[#0B1F3A] font-medium">{tutor.name}</h3>
+            <p className="text-gray-600 text-sm">{tutor.skill}</p>
           </div>
         </div>
 
@@ -56,12 +120,12 @@ export default function BookSession() {
             <h3 className="text-[#0B1F3A] font-medium">Select Date</h3>
           </div>
           <div className="flex gap-2 overflow-x-auto pb-2">
-            {dates.map((d) => (
+            {dates.map((d, idx) => (
               <button
-                key={d.date}
-                onClick={() => setSelectedDate(d.date)}
+                key={idx}
+                onClick={() => setSelectedDateIdx(idx)}
                 className={`flex-shrink-0 w-16 py-3 rounded-xl border-2 transition-colors ${
-                  selectedDate === d.date
+                  selectedDateIdx === idx
                     ? 'border-[#D4AF37] bg-[#D4AF37]/5'
                     : 'border-gray-200 hover:border-gray-300'
                 }`}
@@ -137,7 +201,7 @@ export default function BookSession() {
                   </div>
                   <span className="font-semibold text-[#1A2B4C]">Pay Flat Fee</span>
                 </div>
-                <span className="font-bold text-[#1A2B4C]">₱{50 * duration}</span>
+                <span className="font-bold text-[#1A2B4C]">₱{tutor.price * duration}</span>
               </div>
             </div>
 
@@ -181,9 +245,9 @@ export default function BookSession() {
         <div className="fixed bottom-6 left-6 right-6">
           <button
             onClick={handleConfirm}
-            disabled={!selectedDate || !selectedTime}
+            disabled={selectedDateIdx === null || !selectedTime}
             className={`w-full py-4 rounded-xl transition-colors font-medium ${
-              selectedDate && selectedTime
+              selectedDateIdx !== null && selectedTime
                 ? 'bg-[#1A2B4C] text-white hover:bg-[#1A2B4C]/90'
                 : 'bg-gray-300 text-gray-500 cursor-not-allowed'
             }`}

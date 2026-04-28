@@ -90,7 +90,7 @@ export default function TutorProfile() {
 
         <div className="grid grid-cols-2 gap-3 fixed bottom-6 left-6 right-6 bg-gray-50 pt-4">
           <button
-            onClick={() => navigate('/chat')}
+            onClick={() => navigate('/chat', { state: { selectedChat: Number(id) } })}
             className="py-4 border-2 border-[#0B1F3A] text-[#0B1F3A] rounded-xl hover:bg-[#0B1F3A]/5 transition-colors flex items-center justify-center gap-2"
           >
             <MessageCircle className="w-5 h-5" />

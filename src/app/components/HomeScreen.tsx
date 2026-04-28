@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { Search, Bell, Star, ChevronRight } from 'lucide-react';
 import BottomNav from './BottomNav';
@@ -6,6 +6,19 @@ import BottomNav from './BottomNav';
 export default function HomeScreen() {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
+  const [hasNotifications, setHasNotifications] = useState(false);
+
+  useEffect(() => {
+    const stored = localStorage.getItem('skillswap_bookings');
+    if (stored) {
+      const bookings = JSON.parse(stored);
+      // Check if there are any confirmed/upcoming bookings
+      const upcoming = bookings.filter((b: any) => b.status === 'confirmed');
+      if (upcoming.length > 0) {
+        setHasNotifications(true);
+      }
+    }
+  }, []);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -42,8 +55,14 @@ export default function HomeScreen() {
             <p className="text-gray-300 text-sm">Good morning</p>
             <h1 className="text-white text-2xl font-bold">Hello, Andreson! 👋</h1>
           </div>
-          <button className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center">
+          <button 
+            onClick={() => navigate('/notifications')}
+            className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center relative"
+          >
             <Bell className="w-5 h-5 text-white" />
+            {hasNotifications && (
+              <span className="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border border-[#0B1F3A]"></span>
+            )}
           </button>
         </div>
 
