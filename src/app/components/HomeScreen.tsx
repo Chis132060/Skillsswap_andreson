@@ -6,10 +6,10 @@ export default function HomeScreen() {
   const navigate = useNavigate();
 
   const categories = [
-    { name: 'Math', icon: '📐', color: 'bg-blue-100' },
-    { name: 'Programming', icon: '💻', color: 'bg-purple-100' },
-    { name: 'Design', icon: '🎨', color: 'bg-pink-100' },
-    { name: 'English', icon: '📚', color: 'bg-green-100' }
+    { name: 'Academic', icon: '📚', color: 'bg-blue-100' },
+    { name: 'Tech', icon: '💻', color: 'bg-purple-100' },
+    { name: 'Creative', icon: '🎨', color: 'bg-pink-100' },
+    { name: 'Language', icon: '🗣️', color: 'bg-green-100' }
   ];
 
   const tutors = [
@@ -57,7 +57,7 @@ export default function HomeScreen() {
           {categories.map((cat) => (
             <button
               key={cat.name}
-              onClick={() => navigate('/browse')}
+              onClick={() => navigate('/browse', { state: { category: cat.name } })}
               className={`${cat.color} rounded-xl p-4 flex flex-col items-center gap-2`}
             >
               <span className="text-3xl">{cat.icon}</span>
